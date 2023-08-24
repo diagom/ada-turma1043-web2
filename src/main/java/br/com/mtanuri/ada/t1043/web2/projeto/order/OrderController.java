@@ -7,21 +7,21 @@ import java.util.List;
 @RestController
 @RequestMapping("/Order")
 public class OrderController {
-    private final OrderRepository orderRepository;
+    private final OrderService orderService;
 
     @Autowired
-    public OrderController(OrderRepository orderRepository){
-        this.orderRepository = orderRepository;
+    public OrderController(OrderServiceImpl orderService){
+        this.orderService = orderRepository;
     }
 
     @PostMapping
     public OrderModel addOrder(@RequestBody OrderModel orderModel){
-        return orderRepository.save(orderModel);
+        return orderService.save(orderModel);
     }
 
 
     @GetMapping()
     public List<OrderModel> getOrder(){
-        return orderRepository.findAll();
+        return orderService.findAll();
     }
 }
